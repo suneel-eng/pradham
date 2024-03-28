@@ -1,11 +1,16 @@
 use actix_web::{App, HttpServer};
 use actix_files as fs;
 
+mod route_handlers;
+pub mod models;
+pub mod database;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
 
     let app = || {
         App::new()
+        .service(route_handlers::api_scope())
         .service(
             fs::Files::new("/guide", "./static").index_file("guide.html").prefer_utf8(true)
         )
