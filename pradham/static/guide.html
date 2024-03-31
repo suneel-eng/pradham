@@ -1,11 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pradham . Guide</title>
+    <link rel="stylesheet" href="./css/common.css">
+
+    <style>
+        body {
+            padding: 2rem 1rem;
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .example {
+            margin-top: 2rem;
+        }
+
+        .example-heading {
+            margin-bottom: 1rem;
+        }
+
+        .example-preview {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        .example-code,
+        .example-response {
+            padding: 1rem;
+            font-size: 1.15rem;
+            line-height: 1.75rem;
+            flex: 1;
+            display: flex;
+        }
+
+        .example-code {
+            background-color: var(--bg-code);
+            color: var(--color-code);
+        }
+
+        .example-response {
+            background-color: var(--color-code);
+            color: var(--bg-code);
+        }
+
+        .indicator {
+            font-size: 2rem;
+            align-self: center;
+        }
+
+        .indicator.sm {
+            display: none;
+        }
+
+        @media (max-width: 1020px) {
+            .example-preview {
+                flex-direction: column;
+            }
+
+            .indicator.lg {
+                display: none;
+            };
+            
+            .indicator.sm {
+                display: block;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>This is guide</h1>
+    <h1>Guide</h1>
+    <p>Below you'll find examples using Fetch API but you can can call pradham APIs with any other language.</p>
+
+    <div class="example">
+        <h2 class="example-heading">Getting resource list</h2>
+        <div class="example-preview">
+            <div class="example-code">
+                <div>
+                    <code>
+                        fetch('http://localhost:3000/api/users/')<br/>
+                        .then((response) => response.json())<br/>
+                        .then((json) => console.log(json))
+                    </code>
+                </div>
+            </div>
+            <div class="indicator lg">👉</div>
+            <div class="indicator sm">👇</div>
+            <div class="example-response">
+                <code>
+                [<br/>&nbsp;&nbsp;{ id: 1, name: '...' /* ... */ },<br/>
+                &nbsp;&nbsp;{ id: 2, name: '...' /* ... */ },<br/>
+                &nbsp;&nbsp;/* ... */<br/>
+                &nbsp;&nbsp;{ id: 10, name: '...' /* ... */ },<br/>
+                ];
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2 class="example-heading">Getting a resource</h2>
+        <div class="example-preview">
+            <div class="example-code">
+                <div>
+                    <code>
+                        fetch('http://localhost:3000/api/users/1')<br/>
+                        .then((response) => response.json())<br/>
+                        .then((json) => console.log(json))
+                    </code>
+                </div>
+            </div>
+            <div class="indicator lg">👉</div>
+            <div class="indicator sm">👇</div>
+            <div class="example-response">
+                <code>
+                {<br/>&nbsp;&nbsp;"id": 1,<br/>
+                &nbsp;&nbsp;"name": "Aarav Sharma",<br/>
+                &nbsp;&nbsp;"username": "aarav123",<br/>
+                &nbsp;&nbsp;"email": "aarav.sharma@example.com",<br/>
+                &nbsp;&nbsp;"gender": "male"<br/>
+                }
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2 class="example-heading">Creating a resource</h2>
+        <div class="example-preview">
+            <div class="example-code">
+                <div>
+                    <code>
+                        fetch('http://localhost:3000/api/users/', {<br/>
+                            &nbsp;&nbsp;method: 'POST',<br/>
+                            &nbsp;&nbsp;body: JSON.stringify({<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;id: 1,<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;name: 'Coder',<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;username: 'coder_123',<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;email: 'coder123@example.com',<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;gender: 'male',<br/>
+                                &nbsp;&nbsp;}),<br/>
+                                &nbsp;&nbsp;headers: {<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;'Content-type': 'application/json; charset=UTF-8',<br/>
+                                    &nbsp;&nbsp;},<br/>
+                        })<br/>
+                        .then((response) => response.json())<br/>
+                        .then((json) => console.log(json))
+                    </code>
+                </div>
+            </div>
+            <div class="indicator lg">👉</div>
+            <div class="indicator sm">👇</div>
+            <div class="example-response">
+                <code>
+                    {<br/>&nbsp;&nbsp;"id": 1,<br/>
+                    &nbsp;&nbsp;"name": "Coder",<br/>
+                    &nbsp;&nbsp;"username": "coder_123",<br/>
+                    &nbsp;&nbsp;"email": "coder123@example.com",<br/>
+                    &nbsp;&nbsp;"gender": "male"<br/>
+                    }
+                </code>
+            </div>
+        </div>
+    </div>
+    <p><b>Note</b>: resource will not be created on the server but it will be faked as if.</p>
+
+    <div class="example">
+        <h2 class="example-heading">Updating a resource</h2>
+        <div class="example-preview">
+            <div class="example-code">
+                <div>
+                    <code>
+                        fetch('http://localhost:3000/api/users/1', {<br/>
+                            &nbsp;&nbsp;method: 'PUT',<br/>
+                            &nbsp;&nbsp;body: JSON.stringify({<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;id: 1,<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;name: 'Coder2',<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;username: 'coder2_123',<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;email: 'coder2123@example.com',<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;gender: 'female',<br/>
+                                &nbsp;&nbsp;}),<br/>
+                                &nbsp;&nbsp;headers: {<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;'Content-type': 'application/json; charset=UTF-8',<br/>
+                                    &nbsp;&nbsp;},<br/>
+                        })<br/>
+                        .then((response) => response.json())<br/>
+                        .then((json) => console.log(json))
+                    </code>
+                </div>
+            </div>
+            <div class="indicator lg">👉</div>
+            <div class="indicator sm">👇</div>
+            <div class="example-response">
+                <code>
+                    {<br/>&nbsp;&nbsp;"id": 1,<br/>
+                    &nbsp;&nbsp;"name": "Coder2",<br/>
+                    &nbsp;&nbsp;"username": "coder2_123",<br/>
+                    &nbsp;&nbsp;"email": "coder2123@example.com",<br/>
+                    &nbsp;&nbsp;"gender": "female"<br/>
+                    }
+                </code>
+            </div>
+        </div>
+    </div>
+    <p><b>Note</b>: resource will not be updated on the server but it will be faked as if.</p>
+
+    <div class="example">
+        <h2 class="example-heading">Patching a resource</h2>
+        <div class="example-preview">
+            <div class="example-code">
+                <div>
+                    <code>
+                        fetch('http://localhost:3000/api/users/1', {<br/>
+                            &nbsp;&nbsp;method: 'PATCH',<br/>
+                            &nbsp;&nbsp;body: JSON.stringify({<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;email: 'random@example.com',<br/>
+                                &nbsp;&nbsp;}),<br/>
+                                &nbsp;&nbsp;headers: {<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;'Content-type': 'application/json; charset=UTF-8',<br/>
+                                    &nbsp;&nbsp;},<br/>
+                        })<br/>
+                        .then((response) => response.json())<br/>
+                        .then((json) => console.log(json))
+                    </code>
+                </div>
+            </div>
+            <div class="indicator lg">👉</div>
+            <div class="indicator sm">👇</div>
+            <div class="example-response">
+                <code>
+                    {<br/>&nbsp;&nbsp;"id": 1,<br/>
+                    &nbsp;&nbsp;"name": "Aarav Sharma",<br/>
+                    &nbsp;&nbsp;"username": "aarav123",<br/>
+                    &nbsp;&nbsp;"email": "random@example.com",<br/>
+                    &nbsp;&nbsp;"gender": "male"<br/>
+                    }
+                    </code>
+            </div>
+        </div>
+    </div>
+    <p><b>Note</b>: resource will not be updated on the server but it will be faked as if.</p>
+
+    <div class="example">
+        <h2 class="example-heading">Deleting a resource</h2>
+        <div class="example-preview">
+            <div class="example-code">
+                <div>
+                    <code>
+                        fetch('http://localhost:3000/api/users/1', {<br/>
+                            &nbsp;&nbsp;method: 'DELETE'<br/>
+                        })<br/>
+                        .then((response) => response.json())<br/>
+                        .then((json) => console.log(json))
+                    </code>
+                </div>
+            </div>
+            <div class="indicator lg">👉</div>
+            <div class="indicator sm">👇</div>
+            <div class="example-response">
+                <code>User deleted successfully</code>
+            </div>
+        </div>
+    </div>
+    <p><b>Note</b>: resource will not be deleted on the server but it will be faked as if.</p>
 </body>
+
 </html>

@@ -1,5 +1,8 @@
 :root {
     --bg-one: red;
+    --bg-code: #0c2461;
+
+    --color-code: #fa983a;
 }
 
 * {
