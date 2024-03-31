@@ -77,8 +77,11 @@
 </head>
 
 <body>
+    <div>
+        <a href="/">Back</a>
+    </div>
     <h1>Guide</h1>
-    <p>Below you'll find examples using Fetch API but you can can call pradham APIs with any other language.</p>
+    <p>Below you'll find examples using Fetch API but you can call pradham APIs with any other language.</p>
 
     <div class="example">
         <h2 class="example-heading">Getting resource list</h2>
@@ -86,7 +89,7 @@
             <div class="example-code">
                 <div>
                     <code>
-                        fetch('http://localhost:3000/api/users/')<br/>
+                        fetch('https://pradham.shuttleapp.rs/api/users/')<br/>
                         .then((response) => response.json())<br/>
                         .then((json) => console.log(json))
                     </code>
@@ -112,7 +115,7 @@
             <div class="example-code">
                 <div>
                     <code>
-                        fetch('http://localhost:3000/api/users/1')<br/>
+                        fetch('https://pradham.shuttleapp.rs/api/users/1')<br/>
                         .then((response) => response.json())<br/>
                         .then((json) => console.log(json))
                     </code>
@@ -139,7 +142,7 @@
             <div class="example-code">
                 <div>
                     <code>
-                        fetch('http://localhost:3000/api/users/', {<br/>
+                        fetch('https://pradham.shuttleapp.rs/api/users/', {<br/>
                             &nbsp;&nbsp;method: 'POST',<br/>
                             &nbsp;&nbsp;body: JSON.stringify({<br/>
                                 &nbsp;&nbsp;&nbsp;&nbsp;id: 1,<br/>
@@ -179,7 +182,7 @@
             <div class="example-code">
                 <div>
                     <code>
-                        fetch('http://localhost:3000/api/users/1', {<br/>
+                        fetch('https://pradham.shuttleapp.rs/api/users/1', {<br/>
                             &nbsp;&nbsp;method: 'PUT',<br/>
                             &nbsp;&nbsp;body: JSON.stringify({<br/>
                                 &nbsp;&nbsp;&nbsp;&nbsp;id: 1,<br/>
@@ -219,7 +222,7 @@
             <div class="example-code">
                 <div>
                     <code>
-                        fetch('http://localhost:3000/api/users/1', {<br/>
+                        fetch('https://pradham.shuttleapp.rs/api/users/1', {<br/>
                             &nbsp;&nbsp;method: 'PATCH',<br/>
                             &nbsp;&nbsp;body: JSON.stringify({<br/>
                                 &nbsp;&nbsp;&nbsp;&nbsp;email: 'random@example.com',<br/>
@@ -255,7 +258,7 @@
             <div class="example-code">
                 <div>
                     <code>
-                        fetch('http://localhost:3000/api/users/1', {<br/>
+                        fetch('https://pradham.shuttleapp.rs/api/users/1', {<br/>
                             &nbsp;&nbsp;method: 'DELETE'<br/>
                         })<br/>
                         .then((response) => response.json())<br/>
