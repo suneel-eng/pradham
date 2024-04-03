@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pradham . Home</title>
-    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./assets/css/common.css">
     <style>
         body {
             width: 100%;
@@ -32,11 +32,18 @@
             padding: .5em;
             margin-top: .5em;
         }
+
+        .requests-count {
+            font-size: 1.25rem;
+        }
     </style>
 </head>
 <body>
     <h1>Pradham</h1>
     <p>A free API that provide fake data for testing and prototyping.</p>
+    <p class="requests-count">
+        <b>Served {served_requests_count} requests.</b>
+    </p>
     <a href="./guide">Read the guide</a>
 </body>
 </html>
