@@ -9,7 +9,7 @@ pub struct Model {
     #[sea_orm(primary_key)]
     pub id: u8,
     pub api_name: String,
-    pub requests_count: u64
+    pub requests_count: u32
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

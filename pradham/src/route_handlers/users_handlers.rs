@@ -2,12 +2,12 @@ use actix_web::{delete, get, patch, post, put, web, Error, HttpResponse, Result}
 use sea_orm::EntityTrait;
 use serde_json::json;
 use crate::models::{self, UserPatchData};
-use entity::users::{Entity as UserEntity, Model as UserModel};
+use entity::users;
 
 #[get("/")]
 pub async fn get_users(data: web::Data<models::AppState>) -> Result<HttpResponse, Error> {
     
-    let db_response = UserEntity::find().all(&data.db_connection).await;
+    let db_response = users::Entity::find().all(&data.db_connection).await;
 
     if let Some(users) = db_response.ok() {
         return Ok(
@@ -24,7 +24,7 @@ pub async fn get_users(data: web::Data<models::AppState>) -> Result<HttpResponse
 pub async fn get_user_by_id(data: web::Data<models::AppState>, path: web::Path<u8>) -> Result<HttpResponse, Error> {
     
     let user_id = path.into_inner();
-    let db_response = UserEntity::find_by_id(user_id).one(&data.db_connection).await;
+    let db_response = users::Entity::find_by_id(user_id).one(&data.db_connection).await;
 
     if let Some(user) = db_response.ok().unwrap() {
         return Ok(
@@ -38,12 +38,12 @@ pub async fn get_user_by_id(data: web::Data<models::AppState>, path: web::Path<u
 }
 
 #[post("/")]
-pub async fn post_user(new_user: web::Json<UserModel>) -> Result<HttpResponse, Error> {
+pub async fn post_user(new_user: web::Json<users::Model>) -> Result<HttpResponse, Error> {
     Ok(HttpResponse::Ok().json(web::Json(new_user)))
 }
 
 #[put("/{user_id}")]
-pub async fn put_user(path: web::Path<u8>, new_user: web::Json<UserModel>) -> Result<HttpResponse, Error> {
+pub async fn put_user(path: web::Path<u8>, new_user: web::Json<users::Model>) -> Result<HttpResponse, Error> {
 
     let user_id = path.into_inner();
 
@@ -58,7 +58,7 @@ pub async fn put_user(path: web::Path<u8>, new_user: web::Json<UserModel>) -> Re
 pub async fn patch_user(data: web::Data<models::AppState>, path: web::Path<u8>, patch_data: web::Json<UserPatchData>) -> Result<HttpResponse, Error> {
 
     let user_id = path.into_inner();
-    let db_response = UserEntity::find_by_id(user_id).one(&data.db_connection).await;
+    let db_response = users::Entity::find_by_id(user_id).one(&data.db_connection).await;
 
     if let Some(mut user) = db_response.ok().unwrap() {
 
